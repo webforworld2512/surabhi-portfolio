@@ -1,6 +1,6 @@
 {
-  "homepage": "https://webforworld2512.github.io/my-portfolio",
-  "name": "vite_react_shadcn_ts",
+  "homepage": "https://webforworld2512.github.io/portfolio",
+  "name": "my-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
