@@ -16,7 +16,7 @@ const Projects = () => {
         "Features: recording, screen sharing, scheduling for seamless UX",
       ],
       tech: ["Next.js", "TypeScript", "Clerk", "getstream", "shadcn", "Tailwind CSS"],
-      github: "#",
+      github: "https://github.com/webforworld2512/Room",
       live: "#",
     },
     {
