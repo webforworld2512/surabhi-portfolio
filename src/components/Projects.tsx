@@ -17,7 +17,7 @@ const Projects = () => {
       ],
       tech: ["Next.js", "TypeScript", "Clerk", "getstream", "shadcn", "Tailwind CSS"],
       github: "https://github.com/webforworld2512/Room",
-      live: "#",
+      // live: "#",
     },
     {
       title: "Web Dev Compiler",
@@ -28,8 +28,8 @@ const Projects = () => {
         "RTK Query for API, CRUD, and caching",
       ],
       tech: ["React", "TypeScript", "Redux", "Vite", "shadcn", "Tailwind CSS"],
-      github: "#",
-      live: "#",
+      github: "https://github.com/webforworld2512/web-dev-compiler",
+      // live: "#",
     },
   ];
 
@@ -83,12 +83,12 @@ const Projects = () => {
                         Code
                       </a>
                     </Button>
-                    <Button size="sm" asChild>
+                    {/* <Button size="sm" asChild>
                       <a href={project.live} target="_blank" rel="noopener noreferrer">
                         <ExternalLink className="mr-2 h-4 w-4" />
                         Live
                       </a>
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </Card>
