@@ -5,10 +5,22 @@ import { Badge } from "./ui/badge";
 const Experience = () => {
   const experiences = [
     {
+      title: "Software Development Intern",
+      company: "Donald Hans",
+      location: "Los Angeles, CA",
+      period: "Jan 2026 – Present",
+      achievements: [
+        "Built LLM-based data transformation pipeline on Cloudflare Workers, enabling low-latency edge inference via OpenRouter API",
+        "Implemented vector embedding pipeline for Retrieval-Augmented Generation (RAG) by generating embeddings, storing them in a vector index, and enabling semantic search for chatbot responses",
+        "Improved pipeline reliability by 30% by implementing async orchestration, retry logic, and multi-environment debugging",
+      ],
+      tech: ["React", "Cloudflare Workers", "RAG", "OpenRouter API", "Agentic AI", "REST APIs"],
+    },
+    {
       title: "AI Research Assistant",
       company: "Fowler College of Business, SDSU",
       location: "San Diego, CA",
-      period: "Jan 2025 – Present",
+      period: "Jan 2025 – Dec 2025",
       achievements: [
         "Developed a system to reduce LLM hallucinations by 14% using RAG and Agentic AI (e.g., AutoGen)",
         "Built an NLP model for phishing detection, improving email threat detection accuracy by 30%",
