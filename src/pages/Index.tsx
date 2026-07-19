@@ -149,7 +149,7 @@ const Index = () => {
             <ExperienceCard
               title="Software Engineer"
               company="JSat Automation Inc."
-              location="India"
+              location="Bluebell, PA"
               period="Sep 2022 – Aug 2024"
               color="yellow"
               bullets={[
@@ -237,7 +237,7 @@ const Index = () => {
               tags={["Next.js", "TypeScript", "Clerk", "GetStream"]}
               Icon={Video}
               color="red"
-              href="https://github.com/webforworld2512/ROOM"
+              href="https://room-surabhi.vercel.app/"
             />
             <ProjectCard
               title="Web Dev Compiler"
@@ -253,6 +253,7 @@ const Index = () => {
               tags={["XGBoost", "Python", "AWS SageMaker"]}
               Icon={Shield}
               color="yellow"
+              href="https://github.com/webforworld2512/AI-for-Finance"
             />
             <ProjectCard
               title="Bug Tracker"
@@ -260,7 +261,7 @@ const Index = () => {
               tags={["TypeScript", "Node.js", "Express", "JWT"]}
               Icon={Bug}
               color="red"
-              href="https://github.com/webforworld2512/Bug-Tracker-API"
+              href="https://bug-tracker-api-surabhi.vercel.app/"
             />
           </div>
         </section>
