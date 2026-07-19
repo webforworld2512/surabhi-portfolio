@@ -245,7 +245,7 @@ const Index = () => {
               tags={["React", "TypeScript", "Redux", "Vite"]}
               Icon={Code2}
               color="blue"
-              href="https://github.com/webforworld2512/web-dev-compiler"
+              href="https://web-dev-compiler.vercel.app/"
             />
             <ProjectCard
               title="AI for Finance"
