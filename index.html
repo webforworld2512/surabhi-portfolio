@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mae Ito — UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<script type="module" src="/src/main.js"></script>
+</head>
+<body class="locked">
+
+<div id="cursor"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="count serif"><span id="pct">0</span><sup>%</sup></div>
+  <div class="sig serif">Mae Ito<sup>®</sup></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">S.C<sup>©2026</sup></div>
+  <div class="nav-links">
+    <a href="#work" class="active">Work<sup>04</sup></a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-meta"><b id="clock">00 : 00</b> &nbsp;San Diego, US</div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <canvas id="topo-hero" class="topo-canvas"></canvas>
+  <div class="vol">Portfolio — Vol. 04</div>
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot-mark">•</span><span class="label">Software Engineer · Full-Stack Developer</span></div>
+    <div class="word mae serif reveal-word">SURABHI</div>
+    <div class="word ito serif reveal-word">CHAVAN</div>
+    <div class="label hero-years">( 3+ YEARS EXPERIENCE )</div>
+  </div>
+  <div class="hero-mid">Full-stack systems<br>for ambitious products.</div>
+  <div class="hero-bottom">
+    <div class="left"><span class="dot-mark">•</span><span class="label">Open to Opportunities — 2026</span></div>
+    <div class="mid label">32.7157° N / 117.1611° W</div>
+    <div class="right"><span class="label">Scroll</span><span class="scroll-arrow">↓</span></div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" id="marquee-wrap">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">01 — Selected Work</span></div>
+    <h2 class="sec-head">Four projects,<br><em>chosen slowly.</em></h2>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#11233a"/>
+          <rect x="118" y="78" width="164" height="118" rx="12" fill="#f0ebe1"/>
+          <rect x="134" y="94" width="58" height="14" rx="7" fill="none" stroke="#11233a" stroke-width="1.4"/>
+          <text x="158" y="104" font-family="DM Sans" font-size="7" fill="#11233a" letter-spacing="1">HALCYON</text>
+          <text x="134" y="128" font-family="DM Sans" font-size="6" fill="#9aa3ad" letter-spacing="1">TOTAL BALANCE</text>
+          <text x="134" y="150" font-family="Playfair Display" font-size="20" fill="#11233a">¥ 4,218,400</text>
+          <path d="M134 168 Q160 158 186 164 T238 156 T268 162" fill="none" stroke="#e0481a" stroke-width="1.8"/>
+          <rect x="134" y="176" width="34" height="13" rx="6.5" fill="#e7e0d2"/>
+          <rect x="174" y="176" width="40" height="13" rx="6.5" fill="#e7e0d2"/>
+          <rect x="220" y="176" width="32" height="13" rx="6.5" fill="#e0481a"/>
+          <rect x="288" y="206" width="64" height="40" rx="9" fill="#e0481a"/>
+          <text x="298" y="226" font-family="Playfair Display" font-size="13" fill="#fff">+12.4%</text>
+          <text x="298" y="238" font-family="DM Sans" font-size="5" fill="#ffffffcc" letter-spacing="1">THIS QUARTER</text>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">01</span><span class="label" style="letter-spacing:.18em">Fintech</span></div>
+      <h3 class="proj-title serif">Halcyon</h3>
+      <p class="proj-desc">A calm money app that makes saving feel quiet, not anxious. End-to-end product design and motion.</p>
+      <div class="tags"><span>Product Design</span><span>iOS</span><span>2025</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#a9b6a3"/>
+          <circle cx="200" cy="150" r="92" fill="none" stroke="#5e6b58" stroke-width="1"/>
+          <circle cx="200" cy="150" r="64" fill="none" stroke="#5e6b58" stroke-width="1"/>
+          <circle cx="200" cy="150" r="36" fill="#eef0e8"/>
+          <text x="170" y="248" font-family="DM Sans" font-size="9" fill="#3f4a3b" letter-spacing="3">04 : 00</text>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">02</span><span class="label" style="letter-spacing:.18em">Wellness OS</span></div>
+      <h3 class="proj-title serif">Mizu</h3>
+      <p class="proj-desc">A meditation OS that gets out of the way. Interaction design, motion language, sound pairing.</p>
+      <div class="tags"><span>Interaction</span><span>Motion</span><span>2024</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#cdb79a"/>
+          <rect x="176" y="120" width="14" height="92" rx="4" fill="#3a3128"/>
+          <rect x="210" y="120" width="14" height="92" rx="4" fill="#3a3128"/>
+          <rect x="160" y="150" width="80" height="16" rx="8" fill="#e0481a"/>
+          <rect x="172" y="100" width="14" height="56" rx="6" fill="#3a3128"/>
+          <text x="150" y="246" font-family="DM Sans" font-size="8" fill="#5a4d3c" letter-spacing="3">LC-02 · €1,840</text>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">03</span><span class="label" style="letter-spacing:.18em">E-commerce</span></div>
+      <h3 class="proj-title serif">Loom</h3>
+      <p class="proj-desc">A furniture storefront built around the object, not the grid. Configurator UX and storefront system.</p>
+      <div class="tags"><span>UX</span><span>Storefront</span><span>2024</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#15130f"/>
+          <rect x="70" y="70" width="78" height="160" rx="3" fill="#3a4a3a"/>
+          <rect x="160" y="70" width="78" height="160" rx="3" fill="#cdc3ad"/>
+          <circle cx="199" cy="120" r="22" fill="#efe9df"/>
+          <circle cx="199" cy="120" r="14" fill="#e0481a"/>
+          <rect x="250" y="70" width="78" height="160" rx="3" fill="#1c2b40"/>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">04</span><span class="label" style="letter-spacing:.18em">Community</span></div>
+      <h3 class="proj-title serif">Aperture</h3>
+      <p class="proj-desc">A photography community rebuilt around critique, not clout. Research, IA, and full product design.</p>
+      <div class="tags"><span>Research</span><span>Product</span><span>2023</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label reveal"><span class="dot-mark">•</span><span class="label">02 — About</span></div>
+  <div class="about">
+    <p class="about-text reveal">I'm Surabhi — an Information Systems graduate student at San Diego State University with 3+ years building <em>scalable, end-to-end</em> web applications. I work across reactive Angular/React front-ends, Node.js back-ends, and cloud databases, and I care about clean REST APIs and shipping AI-driven features that hold up in production.</p>
+    <div class="about-art reveal">
+      <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid meet">
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#ffffff2e" stroke-width="1"/>
+        <circle cx="200" cy="170" r="92" fill="#e0481a"/>
+        <path d="M200 230 L300 392 L100 392 Z" fill="#efe9df"/>
+      </svg>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat reveal"><div class="num serif">03<sup>+</sup></div><div class="cap">Years<br>Experience</div></div>
+    <div class="stat reveal"><div class="num serif">04</div><div class="cap">Roles &amp;<br>Internships</div></div>
+    <div class="stat reveal"><div class="num serif">3.5</div><div class="cap">GPA<br>MS · SDSU</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">03 — Services</span></div>
+    <h2 class="sec-head">What I'm<br><em>useful for.</em></h2>
+  </div>
+  <div class="svc-list">
+    <div class="svc-row reveal"><span class="sn">01</span><span class="name serif">Product design</span><span class="sd">From fuzzy brief to shipped product — flows, wireframes, polished UI, and the awkward questions in between.</span></div>
+    <div class="svc-row reveal"><span class="sn">02</span><span class="name serif">Design systems</span><span class="sd">Tokens, components, and documentation your engineers will actually read. Built to scale past me.</span></div>
+    <div class="svc-row reveal"><span class="sn">03</span><span class="name serif">Research &amp; strategy</span><span class="sd">Interviews, jobs-to-be-done, and the unglamorous work of deciding what not to build.</span></div>
+    <div class="svc-row reveal"><span class="sn">04</span><span class="name serif">Motion &amp; prototyping</span><span class="sd">Interface motion that explains rather than decorates — prototyped to feel real before a line of code.</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <canvas id="topo-contact"></canvas>
+  <div class="sec-label reveal" style="justify-content:center"><span class="dot-mark">•</span><span class="label">04 — Contact</span></div>
+  <h2 class="big serif reveal">Let's make<br>something <em>quiet.</em></h2>
+  <a href="mailto:hello@maeito.studio" class="mail reveal">hello@maeito.studio</a>
+</section>
+
+<footer>
+  <div class="left">Mae Ito © 2026</div>
+  <div class="mid">Based in Kyoto · Working everywhere</div>
+  <div class="right"><a href="#">Instagram</a> · <a href="#">LinkedIn</a> · <a href="#">Read.cv</a></div>
+</footer>
+
+</body>
+</html>

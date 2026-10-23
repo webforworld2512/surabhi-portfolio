@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mae Ito — UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efe9df;
+    --ink:#191713;
+    --ink-soft:#5a554c;
+    --accent:#e0481a;
+    --dot:#e04f1a;
+    --black:#15130f;
+    --hair:#19171322;
+    --nav-h:64px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+
+  /* ===== CUSTOM CURSOR (terracotta dot that follows) ===== */
+  *{cursor:none!important}
+  #cursor{
+    position:fixed;left:0;top:0;z-index:9999;pointer-events:none;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--dot);
+    transform:translate(-50%,-50%);
+    transition:width .25s cubic-bezier(.22,1,.36,1),
+               height .25s cubic-bezier(.22,1,.36,1),
+               opacity .2s ease;
+    will-change:transform;
+  }
+  #cursor.card-hover{ width:30px;height:30px; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"DM Sans",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body.locked{overflow:hidden;height:100vh}
+  ::selection{background:var(--accent);color:var(--paper)}
+
+  .serif{font-family:"Playfair Display",Georgia,serif}
+  .label{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--ink-soft)}
+  .dot-mark{color:var(--accent)}
+
+  /* ===== LOADER ===== */
+  #loader{
+    position:fixed;inset:0;z-index:1000;background:var(--black);
+    display:flex;align-items:flex-end;justify-content:center;
+    transition:transform 1s cubic-bezier(.76,0,.24,1);
+  }
+  #loader.done{transform:translateY(-100%)}
+  #loader .count{
+    font-family:"Playfair Display",serif;color:var(--paper);
+    font-size:clamp(120px,22vw,300px);line-height:.8;font-weight:500;
+    margin-bottom:8vh;letter-spacing:-.02em;
+  }
+  #loader .count sup{font-size:.18em;color:var(--accent);font-weight:600;vertical-align:super;margin-left:.05em}
+  #loader .sig{
+    position:absolute;left:48px;bottom:42px;color:var(--paper);
+    font-family:"Playfair Display",serif;font-style:italic;font-size:24px;
+  }
+  #loader .sig sup{font-size:.45em;color:var(--accent);vertical-align:super}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:0 clamp(20px,3vw,48px);
+    opacity:0;transition:opacity .8s ease .2s;
+  }
+  body.ready nav{opacity:1}
+  .brand{font-family:"Playfair Display",serif;font-weight:700;font-size:19px;letter-spacing:.02em}
+  .brand sup{font-size:.5em;letter-spacing:.18em;color:var(--ink-soft);font-family:"DM Sans";font-weight:500;margin-left:4px}
+  .nav-links{display:flex;gap:34px;justify-self:center}
+  .nav-links a{
+    color:var(--ink);text-decoration:none;font-size:12px;letter-spacing:.16em;
+    text-transform:uppercase;font-weight:500;position:relative;padding:4px 0;
+  }
+  .nav-links a sup{font-size:.7em;color:var(--accent);margin-left:1px}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:-2px;height:1px;width:0;
+    background:var(--accent);transition:width .35s ease;
+  }
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+  .nav-links a.active{color:var(--accent)}
+  .nav-meta{justify-self:end;text-align:right;font-size:11px;letter-spacing:.14em;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;min-height:100vh;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:var(--nav-h) clamp(20px,3vw,48px) 70px;
+  }
+  .topo-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .hero-inner{position:relative;z-index:2;width:100%}
+  .eyebrow{display:flex;align-items:center;gap:10px;margin-left:6px;margin-bottom:8px}
+  .eyebrow .label{color:var(--ink)}
+  .word{font-family:"Playfair Display",serif;font-weight:800;line-height:.82;letter-spacing:-.02em;white-space:nowrap}
+  .mae{font-size:clamp(48px,13.5vw,196px);color:var(--ink)}
+  .ito{font-size:clamp(48px,13.5vw,196px);color:var(--accent);font-style:italic;font-weight:600;text-align:right;margin-top:-.04em}
+  .hero-mid{
+    position:absolute;right:clamp(20px,3vw,48px);top:46%;text-align:right;
+    font-size:clamp(15px,1.4vw,21px);line-height:1.35;color:var(--ink);max-width:240px;z-index:2;
+  }
+  .hero-years{margin-left:6px;margin-top:18px}
+  .reveal-word{opacity:0;transform:translateY(40px)}
+  body.ready .reveal-word{animation:rise 1s cubic-bezier(.22,1,.36,1) forwards}
+  body.ready .mae.reveal-word{animation-delay:.1s}
+  body.ready .ito.reveal-word{animation-delay:.28s}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+
+  .hero-bottom{
+    position:absolute;left:0;right:0;bottom:26px;z-index:2;
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:0 clamp(20px,3vw,48px);
+  }
+  .hero-bottom .left{display:flex;align-items:center;gap:9px}
+  .hero-bottom .mid{justify-self:center;font-variant-numeric:tabular-nums}
+  .hero-bottom .right{justify-self:end;display:flex;align-items:center;gap:8px}
+  .scroll-arrow{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  .vol{
+    position:absolute;right:14px;top:50%;transform:translateY(-50%) rotate(180deg);
+    writing-mode:vertical-rl;font-size:10px;letter-spacing:.28em;color:var(--ink-soft);z-index:2;
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee-wrap{
+    overflow:hidden;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+    padding:18px 0;background:var(--paper);position:relative;z-index:1;
+  }
+  .marquee-track{display:flex;white-space:nowrap;will-change:transform}
+  .marquee-track span{
+    font-family:"Playfair Display",serif;font-size:clamp(20px,3vw,40px);
+    font-weight:500;color:var(--ink);padding:0 42px;letter-spacing:-.01em;display:flex;align-items:center;
+  }
+  .marquee-track span em{font-style:italic;color:var(--accent)}
+  .marquee-track span::after{content:"✳";margin-left:42px;color:var(--accent);font-style:normal;font-size:.6em}
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:clamp(70px,11vh,150px) clamp(20px,3vw,48px)}
+  .sec-label{display:flex;align-items:center;gap:10px;margin-bottom:34px}
+  .sec-head{font-family:"Playfair Display",serif;font-weight:500;line-height:.98;font-size:clamp(46px,8vw,108px);letter-spacing:-.015em}
+  .sec-head em{font-style:italic;color:var(--accent);font-weight:500}
+  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ===== WORK ===== */
+  .work-head{margin-bottom:clamp(50px,7vh,96px)}
+  .project{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,90px);align-items:center;margin-bottom:clamp(70px,11vh,150px)}
+  .project:nth-child(even) .card-wrap{order:2}
+  .project:nth-child(even) .meta{order:1;text-align:right}
+  .project:nth-child(even) .meta .tags{justify-content:flex-end}
+  .project:nth-child(even) .meta .proj-num{justify-content:flex-end}
+  .card-wrap{position:relative}
+  .card{aspect-ratio:4/3;border-radius:3px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+  .card svg{width:100%;height:100%;display:block}
+  .card-wrap:hover .card{transform:translateY(-6px)}
+  .proj-num{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .proj-num .n{font-size:13px;color:var(--accent);font-weight:500;font-variant-numeric:tabular-nums}
+  .proj-title{font-family:"Playfair Display",serif;font-size:clamp(40px,6vw,86px);font-weight:500;line-height:.95;letter-spacing:-.01em}
+  .proj-desc{margin-top:18px;max-width:340px;color:var(--ink-soft);font-size:15px;line-height:1.5}
+  .tags{display:flex;gap:22px;margin-top:26px;flex-wrap:wrap}
+  .tags span{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+
+  /* ===== ABOUT ===== */
+  .about{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(36px,6vw,90px);align-items:center}
+  .about-text{font-family:"Playfair Display",serif;font-size:clamp(28px,3.6vw,50px);line-height:1.18;font-weight:500;letter-spacing:-.01em}
+  .about-text em{font-style:italic;color:var(--accent)}
+  .about-art{aspect-ratio:1/1.05;background:var(--black);border-radius:3px;overflow:hidden;position:relative}
+  .about-art svg{width:100%;height:100%}
+
+  /* ===== STATS ===== */
+  .stats{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding-top:46px;padding-bottom:46px;margin-top:clamp(60px,9vh,110px)}
+  .stat{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding-right:8px}
+  .stat .num{font-family:"Playfair Display",serif;font-size:clamp(50px,6vw,92px);font-weight:500;line-height:.85;letter-spacing:-.02em}
+  .stat .num sup{font-size:.34em;color:var(--accent);vertical-align:super}
+  .stat .cap{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);text-align:right;max-width:90px}
+
+  /* ===== SERVICES ===== */
+  .svc-head{margin-bottom:clamp(40px,6vh,80px)}
+  .svc-list{border-top:1px solid var(--hair)}
+  .svc-row{display:grid;grid-template-columns:48px 1fr 1.1fr;gap:24px;align-items:center;padding:clamp(22px,3.4vh,38px) 4px;border-bottom:1px solid var(--hair);position:relative;transition:padding-left .4s ease}
+  .svc-row .sn{font-size:12px;color:var(--accent);font-variant-numeric:tabular-nums}
+  .svc-row .name{font-family:"Playfair Display",serif;font-size:clamp(30px,4.4vw,62px);font-weight:500;line-height:1;letter-spacing:-.01em;transition:color .4s,transform .5s cubic-bezier(.22,1,.36,1)}
+  .svc-row .sd{color:var(--ink-soft);font-size:14px;line-height:1.5;max-width:380px;justify-self:end;text-align:right}
+  .svc-row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:var(--accent);transition:width .4s ease;opacity:.08}
+  .svc-row:hover{padding-left:24px}
+  .svc-row:hover .name{color:var(--accent);transform:translateX(4px)}
+  .svc-row:hover::before{width:100%}
+
+  /* ===== CONTACT ===== */
+  .contact{position:relative;overflow:hidden;background:var(--black);color:var(--paper);text-align:center;padding:clamp(90px,16vh,180px) clamp(20px,3vw,48px)}
+  #topo-contact{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+  .contact .sec-label,.contact .big,.contact .mail{position:relative;z-index:1}
+  .contact .sec-label .label{color:#b8b0a2}
+  .contact .big{font-family:"Playfair Display",serif;font-size:clamp(54px,11vw,170px);line-height:.92;font-weight:500;letter-spacing:-.02em}
+  .contact .big em{font-style:italic;color:var(--accent);font-weight:500}
+  .mail{display:inline-block;margin-top:40px;color:var(--paper);font-size:clamp(18px,2.4vw,30px);text-decoration:none;border-bottom:1px solid #ffffff44;padding-bottom:6px;transition:border-color .3s,color .3s;font-family:"Playfair Display",serif;font-style:italic}
+  .mail:hover{color:var(--accent);border-color:var(--accent)}
+  footer{background:var(--black);color:#9c958a;padding:30px clamp(20px,3vw,48px) 40px;display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;font-size:11px;letter-spacing:.1em}
+  footer .mid{justify-self:center}
+  footer .right{justify-self:end}
+  footer a{color:#9c958a;text-decoration:none}
+  footer a:hover{color:var(--accent)}
+
+  @media(max-width:860px){
+    :root{--nav-h:56px}
+    .nav-links{display:none}
+    .hero-mid{position:static;text-align:left;max-width:none;margin:24px 6px 0}
+    .ito{text-align:left}
+    .vol{display:none}
+    .hero-bottom{position:static;margin-top:30px;grid-template-columns:1fr;gap:8px}
+    .hero-bottom .mid,.hero-bottom .right{justify-self:start}
+    .project{grid-template-columns:1fr;gap:24px}
+    .project:nth-child(even) .card-wrap,.project:nth-child(even) .meta{order:0;text-align:left}
+    .project:nth-child(even) .meta .tags,.project:nth-child(even) .meta .proj-num{justify-content:flex-start}
+    .about{grid-template-columns:1fr}
+    .stats{grid-template-columns:1fr;gap:0}
+    .stat{border-bottom:1px solid var(--hair);padding:22px 0}
+    .svc-row{grid-template-columns:30px 1fr;gap:14px}
+    .svc-row .sd{grid-column:1/-1;justify-self:start;text-align:left;margin-top:8px}
+    footer{grid-template-columns:1fr;text-align:left}
+    footer .mid,footer .right{justify-self:start}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body class="locked">
+
+<div id="cursor"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="count serif"><span id="pct">0</span><sup>%</sup></div>
+  <div class="sig serif">Mae Ito<sup>®</sup></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">S.C<sup>©2026</sup></div>
+  <div class="nav-links">
+    <a href="#work" class="active">Work<sup>04</sup></a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-meta"><b id="clock">00 : 00</b> &nbsp;San Diego, US</div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <canvas id="topo-hero" class="topo-canvas"></canvas>
+  <div class="vol">Portfolio — Vol. 04</div>
+  <div class="hero-inner">
+    <div class="eyebrow"><span class="dot-mark">•</span><span class="label">Software Engineer · Full-Stack Developer</span></div>
+    <div class="word mae serif reveal-word">SURABHI</div>
+    <div class="word ito serif reveal-word">CHAVAN</div>
+    <div class="label hero-years">( 3+ YEARS EXPERIENCE )</div>
+  </div>
+  <div class="hero-mid">Full-stack systems<br>for ambitious products.</div>
+  <div class="hero-bottom">
+    <div class="left"><span class="dot-mark">•</span><span class="label">Open to Opportunities — 2026</span></div>
+    <div class="mid label">32.7157° N / 117.1611° W</div>
+    <div class="right"><span class="label">Scroll</span><span class="scroll-arrow">↓</span></div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" id="marquee-wrap">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">01 — Selected Work</span></div>
+    <h2 class="sec-head">Four projects,<br><em>chosen slowly.</em></h2>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#11233a"/>
+          <rect x="118" y="78" width="164" height="118" rx="12" fill="#f0ebe1"/>
+          <rect x="134" y="94" width="58" height="14" rx="7" fill="none" stroke="#11233a" stroke-width="1.4"/>
+          <text x="158" y="104" font-family="DM Sans" font-size="7" fill="#11233a" letter-spacing="1">HALCYON</text>
+          <text x="134" y="128" font-family="DM Sans" font-size="6" fill="#9aa3ad" letter-spacing="1">TOTAL BALANCE</text>
+          <text x="134" y="150" font-family="Playfair Display" font-size="20" fill="#11233a">¥ 4,218,400</text>
+          <path d="M134 168 Q160 158 186 164 T238 156 T268 162" fill="none" stroke="#e0481a" stroke-width="1.8"/>
+          <rect x="134" y="176" width="34" height="13" rx="6.5" fill="#e7e0d2"/>
+          <rect x="174" y="176" width="40" height="13" rx="6.5" fill="#e7e0d2"/>
+          <rect x="220" y="176" width="32" height="13" rx="6.5" fill="#e0481a"/>
+          <rect x="288" y="206" width="64" height="40" rx="9" fill="#e0481a"/>
+          <text x="298" y="226" font-family="Playfair Display" font-size="13" fill="#fff">+12.4%</text>
+          <text x="298" y="238" font-family="DM Sans" font-size="5" fill="#ffffffcc" letter-spacing="1">THIS QUARTER</text>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">01</span><span class="label" style="letter-spacing:.18em">Fintech</span></div>
+      <h3 class="proj-title serif">Halcyon</h3>
+      <p class="proj-desc">A calm money app that makes saving feel quiet, not anxious. End-to-end product design and motion.</p>
+      <div class="tags"><span>Product Design</span><span>iOS</span><span>2025</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#a9b6a3"/>
+          <circle cx="200" cy="150" r="92" fill="none" stroke="#5e6b58" stroke-width="1"/>
+          <circle cx="200" cy="150" r="64" fill="none" stroke="#5e6b58" stroke-width="1"/>
+          <circle cx="200" cy="150" r="36" fill="#eef0e8"/>
+          <text x="170" y="248" font-family="DM Sans" font-size="9" fill="#3f4a3b" letter-spacing="3">04 : 00</text>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">02</span><span class="label" style="letter-spacing:.18em">Wellness OS</span></div>
+      <h3 class="proj-title serif">Mizu</h3>
+      <p class="proj-desc">A meditation OS that gets out of the way. Interaction design, motion language, sound pairing.</p>
+      <div class="tags"><span>Interaction</span><span>Motion</span><span>2024</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#cdb79a"/>
+          <rect x="176" y="120" width="14" height="92" rx="4" fill="#3a3128"/>
+          <rect x="210" y="120" width="14" height="92" rx="4" fill="#3a3128"/>
+          <rect x="160" y="150" width="80" height="16" rx="8" fill="#e0481a"/>
+          <rect x="172" y="100" width="14" height="56" rx="6" fill="#3a3128"/>
+          <text x="150" y="246" font-family="DM Sans" font-size="8" fill="#5a4d3c" letter-spacing="3">LC-02 · €1,840</text>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">03</span><span class="label" style="letter-spacing:.18em">E-commerce</span></div>
+      <h3 class="proj-title serif">Loom</h3>
+      <p class="proj-desc">A furniture storefront built around the object, not the grid. Configurator UX and storefront system.</p>
+      <div class="tags"><span>UX</span><span>Storefront</span><span>2024</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <div class="card">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#15130f"/>
+          <rect x="70" y="70" width="78" height="160" rx="3" fill="#3a4a3a"/>
+          <rect x="160" y="70" width="78" height="160" rx="3" fill="#cdc3ad"/>
+          <circle cx="199" cy="120" r="22" fill="#efe9df"/>
+          <circle cx="199" cy="120" r="14" fill="#e0481a"/>
+          <rect x="250" y="70" width="78" height="160" rx="3" fill="#1c2b40"/>
+        </svg>
+      </div>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">04</span><span class="label" style="letter-spacing:.18em">Community</span></div>
+      <h3 class="proj-title serif">Aperture</h3>
+      <p class="proj-desc">A photography community rebuilt around critique, not clout. Research, IA, and full product design.</p>
+      <div class="tags"><span>Research</span><span>Product</span><span>2023</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-label reveal"><span class="dot-mark">•</span><span class="label">02 — About</span></div>
+  <div class="about">
+    <p class="about-text reveal">I'm Surabhi — an Information Systems graduate student at San Diego State University with 3+ years building <em>scalable, end-to-end</em> web applications. I work across reactive Angular/React front-ends, Node.js back-ends, and cloud databases, and I care about clean REST APIs and shipping AI-driven features that hold up in production.</p>
+    <div class="about-art reveal">
+      <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid meet">
+        <circle cx="200" cy="200" r="150" fill="none" stroke="#ffffff2e" stroke-width="1"/>
+        <circle cx="200" cy="170" r="92" fill="#e0481a"/>
+        <path d="M200 230 L300 392 L100 392 Z" fill="#efe9df"/>
+      </svg>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat reveal"><div class="num serif">03<sup>+</sup></div><div class="cap">Years<br>Experience</div></div>
+    <div class="stat reveal"><div class="num serif">04</div><div class="cap">Roles &amp;<br>Internships</div></div>
+    <div class="stat reveal"><div class="num serif">3.5</div><div class="cap">GPA<br>MS · SDSU</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">03 — Services</span></div>
+    <h2 class="sec-head">What I'm<br><em>useful for.</em></h2>
+  </div>
+  <div class="svc-list">
+    <div class="svc-row reveal"><span class="sn">01</span><span class="name serif">Product design</span><span class="sd">From fuzzy brief to shipped product — flows, wireframes, polished UI, and the awkward questions in between.</span></div>
+    <div class="svc-row reveal"><span class="sn">02</span><span class="name serif">Design systems</span><span class="sd">Tokens, components, and documentation your engineers will actually read. Built to scale past me.</span></div>
+    <div class="svc-row reveal"><span class="sn">03</span><span class="name serif">Research &amp; strategy</span><span class="sd">Interviews, jobs-to-be-done, and the unglamorous work of deciding what not to build.</span></div>
+    <div class="svc-row reveal"><span class="sn">04</span><span class="name serif">Motion &amp; prototyping</span><span class="sd">Interface motion that explains rather than decorates — prototyped to feel real before a line of code.</span></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <canvas id="topo-contact"></canvas>
+  <div class="sec-label reveal" style="justify-content:center"><span class="dot-mark">•</span><span class="label">04 — Contact</span></div>
+  <h2 class="big serif reveal">Let's make<br>something <em>quiet.</em></h2>
+  <a href="mailto:hello@maeito.studio" class="mail reveal">hello@maeito.studio</a>
+</section>
+
+<footer>
+  <div class="left">Mae Ito © 2026</div>
+  <div class="mid">Based in Kyoto · Working everywhere</div>
+  <div class="right"><a href="#">Instagram</a> · <a href="#">LinkedIn</a> · <a href="#">Read.cv</a></div>
+</footer>
+
+<script>
+(function(){
+'use strict';
+
+/* ============================================================
+   1. CURSOR — terracotta dot that follows (snappy, light trail)
+   ============================================================ */
+const cursor = document.getElementById('cursor');
+let mx = window.innerWidth/2, my = window.innerHeight/2;
+let cxp = mx, cyp = my;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+(function followCursor(){
+  cxp += (mx - cxp) * 0.35;   // light follow — present but low latency
+  cyp += (my - cyp) * 0.35;
+  cursor.style.transform = 'translate(' + cxp + 'px,' + cyp + 'px) translate(-50%,-50%)';
+  requestAnimationFrame(followCursor);
+})();
+document.querySelectorAll('[data-card]').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('card-hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('card-hover'));
+});
+
+/* ============================================================
+   2. TOPOGRAPHIC WAVE FIELD (reusable for hero + contact)
+   - Cursor acts as a wave source; ripples travel across the
+     whole background. Displacement is clamped to ~1 inch.
+   - Origin = raw pointer position => zero latency.
+   ============================================================ */
+function seededRand(seed){
+  let s = seed;
+  return function(){ s = (s*1664525 + 1013904223) & 0xffffffff; return (s>>>0)/0xffffffff; };
+}
+
+/* Classic Perlin noise — gives the organic "terrain" that the
+   contour lines are traced from (like a real elevation map). */
+function makePerlin(seed){
+  const rnd = seededRand(seed);
+  const perm = new Uint8Array(512);
+  const p = [];
+  for(let i=0;i<256;i++) p[i]=i;
+  for(let i=255;i>0;i--){ const j=Math.floor(rnd()*(i+1)); const t=p[i]; p[i]=p[j]; p[j]=t; }
+  for(let i=0;i<512;i++) perm[i]=p[i&255];
+  const fade=t=>t*t*t*(t*(t*6-15)+10);
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  function grad(h,x,y){ const g=h&3; const u=g<2?x:y; const v=g<2?y:x; return ((g&1)?-u:u)+((g&2)?-v:v); }
+  return function(x,y){
+    const X=Math.floor(x)&255, Y=Math.floor(y)&255;
+    const xf=x-Math.floor(x), yf=y-Math.floor(y);
+    const u=fade(xf), v=fade(yf);
+    const aa=perm[perm[X]+Y], ab=perm[perm[X]+Y+1], ba=perm[perm[X+1]+Y], bb=perm[perm[X+1]+Y+1];
+    const x1=lerp(grad(aa,xf,yf),   grad(ba,xf-1,yf),   u);
+    const x2=lerp(grad(ab,xf,yf-1), grad(bb,xf-1,yf-1), u);
+    return lerp(x1,x2,v); // ~ -1 .. 1
+  };
+}
+
+/* Build topographic contours via marching squares over an fbm field.
+   Returns two flat segment arrays [x1,y1,x2,y2, ...] — base + accent. */
+/* Join loose marching-squares segments into continuous polylines so they
+   can be drawn as smooth bezier paths (geometric vertices, organic curves). */
+function stitch(segs){
+  const nodes = new Map();
+  const kf = (x,y)=> (Math.round(x*8)) + '_' + (Math.round(y*8));
+  function nk(x,y){ const k=kf(x,y); if(!nodes.has(k)) nodes.set(k,{x,y,nbrs:[]}); return k; }
+  const used = new Set();
+  const ek = (a,b)=> a<b ? a+'|'+b : b+'|'+a;
+  for(const s of segs){
+    const ka=nk(s[0],s[1]), kb=nk(s[2],s[3]);
+    if(ka===kb) continue;
+    nodes.get(ka).nbrs.push(kb);
+    nodes.get(kb).nbrs.push(ka);
+  }
+  const keys=[...nodes.keys()];
+  const polys=[];
+  function walk(start){
+    const line=[]; let cur=start;
+    while(true){
+      const n=nodes.get(cur);
+      line.push(n.x,n.y);
+      let nxt=null;
+      for(const nb of n.nbrs){ if(!used.has(ek(cur,nb))){ nxt=nb; break; } }
+      if(nxt===null) break;
+      used.add(ek(cur,nxt));
+      cur=nxt;
+      if(cur===start){ const s=nodes.get(cur); line.push(s.x,s.y); break; }
+    }
+    return line;
+  }
+  const open = k => nodes.get(k).nbrs.some(nb=>!used.has(ek(k,nb)));
+  // open contours first (endpoints), then remaining closed loops
+  for(const k of keys){ if(nodes.get(k).nbrs.length===1 && open(k)){ const l=walk(k); if(l.length>=4) polys.push(l); } }
+  for(const k of keys){ if(open(k)){ const l=walk(k); if(l.length>=4) polys.push(l); } }
+  return polys;
+}
+
+function buildContours(W, H){
+  const noise = makePerlin(1337);
+  const SCALE = 0.00105;             // larger, more sprawling landforms (survey-map scale)
+  function fbm(x,y){
+    let v=0, amp=0.5, f=1;
+    for(let o=0;o<4;o++){ v += noise(x*f, y*f)*amp; amp*=0.5; f*=2; }
+    return v;
+  }
+
+  const cell = 30;                   // grid resolution (px) — fine for smooth flowing curves
+  const cols = Math.ceil(W/cell)+1;
+  const rows = Math.ceil(H/cell)+1;
+
+  const val = new Float32Array((cols+1)*(rows+1));
+  const idx = (i,j)=> j*(cols+1)+i;
+  for(let j=0;j<=rows;j++)
+    for(let i=0;i<=cols;i++)
+      val[idx(i,j)] = fbm(i*cell*SCALE, j*cell*SCALE);
+
+  // moderately-spaced levels => open, sprawling contours (not packed rings)
+  const levels = [];
+  for(let L=-0.66; L<=0.66; L+=0.062) levels.push(+L.toFixed(3));
+
+  const it = (lv,a,b)=> Math.abs(a-b)<1e-6 ? 0.5 : (lv-a)/(b-a);
+  const lines = [];
+
+  levels.forEach((lv, li) => {
+    const accent = (li % 5 === 2);     // sparse terracotta contours winding through
+    const segs = [];
+    for(let j=0;j<rows;j++){
+      for(let i=0;i<cols;i++){
+        const x0=i*cell, y0=j*cell, x1=x0+cell, y1=y0+cell;
+        const tl=val[idx(i,j)],   tr=val[idx(i+1,j)],
+              br=val[idx(i+1,j+1)], bl=val[idx(i,j+1)];
+        let c=0;
+        if(tl>lv)c|=8; if(tr>lv)c|=4; if(br>lv)c|=2; if(bl>lv)c|=1;
+        if(c===0||c===15) continue;
+        const T=[x0+it(lv,tl,tr)*cell, y0];
+        const R=[x1, y0+it(lv,tr,br)*cell];
+        const B=[x0+it(lv,bl,br)*cell, y1];
+        const Lf=[x0, y0+it(lv,tl,bl)*cell];
+        const seg=(p,q)=>segs.push([p[0],p[1],q[0],q[1]]);
+        switch(c){
+          case 1:  seg(Lf,B); break;
+          case 2:  seg(B,R);  break;
+          case 3:  seg(Lf,R); break;
+          case 4:  seg(T,R);  break;
+          case 5:  seg(T,R); seg(Lf,B); break;
+          case 6:  seg(T,B);  break;
+          case 7:  seg(T,Lf); break;
+          case 8:  seg(T,Lf); break;
+          case 9:  seg(T,B);  break;
+          case 10: seg(T,Lf); seg(R,B); break;
+          case 11: seg(T,R);  break;
+          case 12: seg(Lf,R); break;
+          case 13: seg(B,R);  break;
+          case 14: seg(Lf,B); break;
+        }
+      }
+    }
+    const polys = stitch(segs);
+    for(const p of polys) lines.push({ pts:p, accent });
+  });
+
+  return { lines, cell, cols, rows };
+}
+
+function createTopo(canvas, host, palette){
+  const ctx = canvas.getContext('2d');
+  let lines = [];                           // [{pts:[x,y,...], accent}]
+  let cell = 32, gw = 0, gh = 0;            // vertex-grid dims of the spring field
+  let ox, oy, vx, vy;                        // per-vertex offset + velocity (springs)
+  let pointerX = -9999, pointerY = -9999;    // raw pointer (zero latency)
+  let visible = true;
+
+  /* Magnetic repulsion + spring field:
+     - cursor repels vertices across a WIDE radius (no travelling ripple),
+     - a spring pulls every vertex back to its base coordinate with damping,
+       so distorted ridges snap cleanly back when the cursor leaves. */
+  const STIFF = 0.06;   // spring stiffness (snap-back)
+  const DAMP  = 0.84;   // velocity damping (responsive, still elastic)
+  const PUSH  = 2.7;    // magnetic repulsion strength
+  const MAXD  = 44;     // max vertex displacement (px)
+  let   R     = 340;    // influence radius — set in resize to ~28% of canvas area
+  let   R2    = R*R;
+
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    const c = buildContours(canvas.width, canvas.height);
+    lines = c.lines;
+    cell = c.cell; gw = c.cols + 1; gh = c.rows + 1;
+    const n = gw * gh;
+    ox = new Float32Array(n); oy = new Float32Array(n);
+    vx = new Float32Array(n); vy = new Float32Array(n);
+    // radius covering ~28% of the canvas area: pi*R^2 = 0.28*W*H
+    R = Math.sqrt(0.28 * canvas.width * canvas.height / Math.PI);
+    R2 = R*R;
+  }
+
+  host.addEventListener('mousemove', e => {
+    const rect = host.getBoundingClientRect();
+    pointerX = e.clientX - rect.left;
+    pointerY = e.clientY - rect.top;
+  });
+  host.addEventListener('mouseleave', () => { pointerX = -9999; pointerY = -9999; });
+
+  // integrate one step of the repulsion + spring field
+  function physics(){
+    const hasP = pointerX > -9000;
+    for(let j=0;j<gh;j++){
+      const wy = j*cell;
+      for(let i=0;i<gw;i++){
+        const k = j*gw + i;
+        let fx = -STIFF*ox[k];            // spring toward base coordinate
+        let fy = -STIFF*oy[k];
+        if(hasP){
+          const dx = i*cell - pointerX, dy = wy - pointerY;
+          const d2 = dx*dx + dy*dy;
+          if(d2 < R2 && d2 > 1e-6){
+            const dist = Math.sqrt(d2);
+            const t = 1 - dist/R;
+            const fall = t*t*(3-2*t);       // smoothstep — wide, cohesive field
+            const mag = PUSH * fall;
+            fx += (dx/dist)*mag;            // pure repulsion: push away from cursor
+            fy += (dy/dist)*mag;
+          }
+        }
+        let nvx = (vx[k] + fx) * DAMP;
+        let nvy = (vy[k] + fy) * DAMP;
+        vx[k] = nvx; vy[k] = nvy;
+        let nox = ox[k] + nvx, noy = oy[k] + nvy;
+        if(nox> MAXD)nox= MAXD; else if(nox<-MAXD)nox=-MAXD;
+        if(noy> MAXD)noy= MAXD; else if(noy<-MAXD)noy=-MAXD;
+        ox[k] = nox; oy[k] = noy;
+      }
+    }
+  }
+
+  // bilinear sample of the offset field at a pixel position
+  const SAMP = [0,0];
+  function sample(x,y){
+    let gx = x/cell, gy = y/cell;
+    let i0 = Math.floor(gx), j0 = Math.floor(gy);
+    let fx = gx-i0, fy = gy-j0;
+    if(i0<0){i0=0;fx=0;} if(j0<0){j0=0;fy=0;}
+    if(i0>gw-2){i0=gw-2;fx=1;} if(j0>gh-2){j0=gh-2;fy=1;}
+    const a=j0*gw+i0, b=a+1, c=a+gw, d=c+1;
+    const x0=ox[a]+(ox[b]-ox[a])*fx, x1=ox[c]+(ox[d]-ox[c])*fx;
+    const y0=oy[a]+(oy[b]-oy[a])*fx, y1=oy[c]+(oy[d]-oy[c])*fx;
+    SAMP[0]=x0+(x1-x0)*fy; SAMP[1]=y0+(y1-y0)*fy;
+  }
+
+  // draw polylines as smooth quadratic paths through displaced vertices
+  // (vertices = geometric control points; midpoints = smooth transitions)
+  function strokeLines(accentPass, color, width){
+    ctx.beginPath();
+    for(const L of lines){
+      if(L.accent !== accentPass) continue;
+      const p = L.pts, n = p.length/2;
+      if(n < 2) continue;
+      sample(p[0],p[1]); let x0=p[0]+SAMP[0], y0=p[1]+SAMP[1];
+      ctx.moveTo(x0,y0);
+      if(n === 2){ sample(p[2],p[3]); ctx.lineTo(p[2]+SAMP[0],p[3]+SAMP[1]); continue; }
+      for(let i=1;i<n-1;i++){
+        sample(p[i*2],   p[i*2+1]);   const cx=p[i*2]  +SAMP[0], cy=p[i*2+1]+SAMP[1];
+        sample(p[i*2+2], p[i*2+3]);   const nx=p[i*2+2]+SAMP[0], ny=p[i*2+3]+SAMP[1];
+        ctx.quadraticCurveTo(cx, cy, (cx+nx)/2, (cy+ny)/2);
+      }
+      const li=(n-1)*2; sample(p[li],p[li+1]);
+      ctx.lineTo(p[li]+SAMP[0], p[li+1]+SAMP[1]);
+    }
+    ctx.strokeStyle=color; ctx.lineWidth=width; ctx.stroke();
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.lineJoin='round'; ctx.lineCap='round';
+    strokeLines(false, palette.base,   0.8);   // dense hair-line ridges
+    strokeLines(true,  palette.accent, 1.15);  // structural accent boundaries
+  }
+
+  function frame(){
+    if(visible){ physics(); draw(); }
+    requestAnimationFrame(frame);
+  }
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es => { es.forEach(e => { visible = e.isIntersecting; }); },
+      {threshold:0.01}).observe(host);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(frame);
+}
+
+createTopo(
+  document.getElementById('topo-hero'),
+  document.getElementById('hero'),
+  { accent:'rgba(224,72,26,0.55)', base:'rgba(25,23,19,0.13)' }   // --accent / --hair
+);
+createTopo(
+  document.getElementById('topo-contact'),
+  document.getElementById('contact'),
+  { accent:'rgba(224,72,26,0.55)', base:'rgba(239,233,223,0.13)' }
+);
+
+/* ============================================================
+   3. MARQUEE — Surabhi's skills, constant right-to-left drift.
+      Independent of page scroll (always its own natural speed).
+   ============================================================ */
+const MARQUEE_ITEMS = [
+  'TypeScript','<em>React / Next.js</em>','Angular',
+  'Node.js','<em>Python</em>','GraphQL',
+  'AWS','<em>Docker</em>','PostgreSQL',
+  'Three.js','<em>RAG & Agentic AI</em>','REST APIs',
+  'CI/CD','<em>UI / UX</em>','Figma',
+];
+const track = document.getElementById('marquee-track');
+[...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS].forEach(t => {
+  const s = document.createElement('span'); s.innerHTML = t; track.appendChild(s);
+});
+
+let marqueeX = 0;
+const MARQUEE_SPEED = 0.9;    // constant natural drift (px/frame), right -> left
+
+(function marqueeFrame(){
+  marqueeX -= MARQUEE_SPEED;                 // steady, scroll-independent
+  const setW = track.scrollWidth / 3;
+  if(marqueeX < -setW) marqueeX += setW;
+  track.style.transform = 'translateX(' + marqueeX + 'px)';
+  requestAnimationFrame(marqueeFrame);
+})();
+
+/* ============================================================
+   4. CLOCK
+   ============================================================ */
+function tick(){
+  const now = new Date();
+  const jst = new Date(now.getTime() + now.getTimezoneOffset()*60000 + 9*3600000);
+  const el = document.getElementById('clock');
+  if(el) el.textContent = String(jst.getHours()).padStart(2,'0') + ' : ' + String(jst.getMinutes()).padStart(2,'0');
+}
+tick(); setInterval(tick, 20000);
+
+/* ============================================================
+   5. LOADER
+   ============================================================ */
+const pct = document.getElementById('pct');
+const loader = document.getElementById('loader');
+let v = 0;
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function finish(){
+  loader.classList.add('done');
+  document.body.classList.remove('locked');
+  document.body.classList.add('ready');
+  setTimeout(() => loader.remove(), 1100);
+}
+if(reduce){ pct.textContent = '100'; setTimeout(finish, 200); }
+else{
+  const iv = setInterval(() => {
+    v += Math.floor(Math.random()*9)+3;
+    if(v >= 100){ v=100; pct.textContent=v; clearInterval(iv); setTimeout(finish, 420); }
+    else pct.textContent = v;
+  }, 90);
+}
+
+/* ============================================================
+   6. SCROLL REVEAL + ACTIVE NAV
+   ============================================================ */
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.16, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+const navIO = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if(e.isIntersecting){
+      navLinks.forEach(l => l.classList.remove('active'));
+      const m = navLinks.find(l => l.getAttribute('href') === '#' + e.target.id);
+      if(m) m.classList.add('active');
+    }
+  });
+}, {threshold:.4});
+['work','about','services','contact'].forEach(id => {
+  const el = document.getElementById(id); if(el) navIO.observe(el);
+});
+
+})();
+</script>
+</body>
+</html>
