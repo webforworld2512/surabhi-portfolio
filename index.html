@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mae Ito — UI/UX Designer</title>
+<title>Surabhi Chavan · Full-Stack Developer</title>
+<!-- Theme-matching favicon: concentric topographic rings on paper with a
+     terracotta orbital dot. JavaScript rotates the dot as you scroll through
+     sections, so the tab icon tracks your position on the page. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23efe9df'/%3E%3Ccircle cx='16' cy='16' r='12.5' fill='none' stroke='%2319171326' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='9.5' fill='none' stroke='%231917134a' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='6.5' fill='none' stroke='%2319171370' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='3.5' fill='none' stroke='%23e0481a' stroke-width='1.3'/%3E%3Ccircle cx='16' cy='4' r='2.4' fill='%23e0481a'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -16,34 +20,40 @@
 <!-- LOADER -->
 <div id="loader">
   <div class="count serif"><span id="pct">0</span><sup>%</sup></div>
-  <div class="sig serif">Mae Ito<sup>®</sup></div>
+  <div class="sig serif">Surabhi Chavan<sup>®</sup></div>
 </div>
 
 <!-- NAV -->
 <nav>
   <div class="brand">S.C<sup>©2026</sup></div>
   <div class="nav-links">
-    <a href="#work" class="active">Work<sup>04</sup></a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" class="active">About<sup>01</sup></a>
+    <a href="#education">Education<sup>02</sup></a>
+    <a href="#experience">Experience<sup>03</sup></a>
+    <a href="#work">Work<sup>04</sup></a>
+    <a href="#skills">Skills<sup>05</sup></a>
+    <a href="#contact">Contact<sup>06</sup></a>
   </div>
-  <div class="nav-meta"><b id="clock">00 : 00</b> &nbsp;San Diego, US</div>
+  <div class="nav-meta"><b id="clock">00 : 00</b> <span class="nav-tz">PST</span> &nbsp;California, USA</div>
 </nav>
 
 <!-- HERO -->
 <header class="hero" id="hero">
-  <canvas id="topo-hero" class="topo-canvas"></canvas>
-  <div class="vol">Portfolio — Vol. 04</div>
+  <!-- Static SVG renders first (no-JS fallback), the canvas sits above it and
+       takes over with the cursor-driven displacement once the data loads. -->
+  <div class="topo-ca" aria-hidden="true">
+    <img src="/california-contours.svg" alt="" loading="eager" fetchpriority="high">
+    <canvas id="topo-hero" class="topo-canvas"></canvas>
+  </div>
+  <div class="vol">Portfolio · Vol. 04 · California</div>
   <div class="hero-inner">
-    <div class="eyebrow"><span class="dot-mark">•</span><span class="label">Software Engineer · Full-Stack Developer</span></div>
+    <div class="eyebrow"><span class="dot-mark">•</span><span class="hero-role">Software Engineer · Full-Stack Developer</span></div>
     <div class="word mae serif reveal-word">SURABHI</div>
     <div class="word ito serif reveal-word">CHAVAN</div>
     <div class="label hero-years">( 3+ YEARS EXPERIENCE )</div>
   </div>
-  <div class="hero-mid">Full-stack systems<br>for ambitious products.</div>
   <div class="hero-bottom">
-    <div class="left"><span class="dot-mark">•</span><span class="label">Open to Opportunities — 2026</span></div>
+    <div class="left"></div>
     <div class="mid label">32.7157° N / 117.1611° W</div>
     <div class="right"><span class="label">Scroll</span><span class="scroll-arrow">↓</span></div>
   </div>
@@ -54,151 +64,588 @@
   <div class="marquee-track" id="marquee-track"></div>
 </div>
 
-<!-- WORK -->
-<section id="work">
-  <div class="work-head reveal">
-    <div class="sec-label"><span class="dot-mark">•</span><span class="label">01 — Selected Work</span></div>
-    <h2 class="sec-head">Four projects,<br><em>chosen slowly.</em></h2>
-  </div>
-
-  <div class="project reveal">
-    <div class="card-wrap" data-card>
-      <div class="card">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="300" fill="#11233a"/>
-          <rect x="118" y="78" width="164" height="118" rx="12" fill="#f0ebe1"/>
-          <rect x="134" y="94" width="58" height="14" rx="7" fill="none" stroke="#11233a" stroke-width="1.4"/>
-          <text x="158" y="104" font-family="DM Sans" font-size="7" fill="#11233a" letter-spacing="1">HALCYON</text>
-          <text x="134" y="128" font-family="DM Sans" font-size="6" fill="#9aa3ad" letter-spacing="1">TOTAL BALANCE</text>
-          <text x="134" y="150" font-family="Playfair Display" font-size="20" fill="#11233a">¥ 4,218,400</text>
-          <path d="M134 168 Q160 158 186 164 T238 156 T268 162" fill="none" stroke="#e0481a" stroke-width="1.8"/>
-          <rect x="134" y="176" width="34" height="13" rx="6.5" fill="#e7e0d2"/>
-          <rect x="174" y="176" width="40" height="13" rx="6.5" fill="#e7e0d2"/>
-          <rect x="220" y="176" width="32" height="13" rx="6.5" fill="#e0481a"/>
-          <rect x="288" y="206" width="64" height="40" rx="9" fill="#e0481a"/>
-          <text x="298" y="226" font-family="Playfair Display" font-size="13" fill="#fff">+12.4%</text>
-          <text x="298" y="238" font-family="DM Sans" font-size="5" fill="#ffffffcc" letter-spacing="1">THIS QUARTER</text>
-        </svg>
-      </div>
-    </div>
-    <div class="meta">
-      <div class="proj-num"><span class="n">01</span><span class="label" style="letter-spacing:.18em">Fintech</span></div>
-      <h3 class="proj-title serif">Halcyon</h3>
-      <p class="proj-desc">A calm money app that makes saving feel quiet, not anxious. End-to-end product design and motion.</p>
-      <div class="tags"><span>Product Design</span><span>iOS</span><span>2025</span></div>
-    </div>
-  </div>
-
-  <div class="project reveal">
-    <div class="card-wrap" data-card>
-      <div class="card">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="300" fill="#a9b6a3"/>
-          <circle cx="200" cy="150" r="92" fill="none" stroke="#5e6b58" stroke-width="1"/>
-          <circle cx="200" cy="150" r="64" fill="none" stroke="#5e6b58" stroke-width="1"/>
-          <circle cx="200" cy="150" r="36" fill="#eef0e8"/>
-          <text x="170" y="248" font-family="DM Sans" font-size="9" fill="#3f4a3b" letter-spacing="3">04 : 00</text>
-        </svg>
-      </div>
-    </div>
-    <div class="meta">
-      <div class="proj-num"><span class="n">02</span><span class="label" style="letter-spacing:.18em">Wellness OS</span></div>
-      <h3 class="proj-title serif">Mizu</h3>
-      <p class="proj-desc">A meditation OS that gets out of the way. Interaction design, motion language, sound pairing.</p>
-      <div class="tags"><span>Interaction</span><span>Motion</span><span>2024</span></div>
-    </div>
-  </div>
-
-  <div class="project reveal">
-    <div class="card-wrap" data-card>
-      <div class="card">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="300" fill="#cdb79a"/>
-          <rect x="176" y="120" width="14" height="92" rx="4" fill="#3a3128"/>
-          <rect x="210" y="120" width="14" height="92" rx="4" fill="#3a3128"/>
-          <rect x="160" y="150" width="80" height="16" rx="8" fill="#e0481a"/>
-          <rect x="172" y="100" width="14" height="56" rx="6" fill="#3a3128"/>
-          <text x="150" y="246" font-family="DM Sans" font-size="8" fill="#5a4d3c" letter-spacing="3">LC-02 · €1,840</text>
-        </svg>
-      </div>
-    </div>
-    <div class="meta">
-      <div class="proj-num"><span class="n">03</span><span class="label" style="letter-spacing:.18em">E-commerce</span></div>
-      <h3 class="proj-title serif">Loom</h3>
-      <p class="proj-desc">A furniture storefront built around the object, not the grid. Configurator UX and storefront system.</p>
-      <div class="tags"><span>UX</span><span>Storefront</span><span>2024</span></div>
-    </div>
-  </div>
-
-  <div class="project reveal">
-    <div class="card-wrap" data-card>
-      <div class="card">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="300" fill="#15130f"/>
-          <rect x="70" y="70" width="78" height="160" rx="3" fill="#3a4a3a"/>
-          <rect x="160" y="70" width="78" height="160" rx="3" fill="#cdc3ad"/>
-          <circle cx="199" cy="120" r="22" fill="#efe9df"/>
-          <circle cx="199" cy="120" r="14" fill="#e0481a"/>
-          <rect x="250" y="70" width="78" height="160" rx="3" fill="#1c2b40"/>
-        </svg>
-      </div>
-    </div>
-    <div class="meta">
-      <div class="proj-num"><span class="n">04</span><span class="label" style="letter-spacing:.18em">Community</span></div>
-      <h3 class="proj-title serif">Aperture</h3>
-      <p class="proj-desc">A photography community rebuilt around critique, not clout. Research, IA, and full product design.</p>
-      <div class="tags"><span>Research</span><span>Product</span><span>2023</span></div>
-    </div>
-  </div>
-</section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="sec-label reveal"><span class="dot-mark">•</span><span class="label">02 — About</span></div>
+  <div class="sec-label reveal"><span class="dot-mark">•</span><span class="label">01 · About</span></div>
   <div class="about">
-    <p class="about-text reveal">I'm Surabhi — an Information Systems graduate student at San Diego State University with 3+ years building <em>scalable, end-to-end</em> web applications. I work across reactive Angular/React front-ends, Node.js back-ends, and cloud databases, and I care about clean REST APIs and shipping AI-driven features that hold up in production.</p>
-    <div class="about-art reveal">
-      <svg viewBox="0 0 400 420" preserveAspectRatio="xMidYMid meet">
-        <circle cx="200" cy="200" r="150" fill="none" stroke="#ffffff2e" stroke-width="1"/>
-        <circle cx="200" cy="170" r="92" fill="#e0481a"/>
-        <path d="M200 230 L300 392 L100 392 Z" fill="#efe9df"/>
-      </svg>
-    </div>
-  </div>
-  <div class="stats">
-    <div class="stat reveal"><div class="num serif">03<sup>+</sup></div><div class="cap">Years<br>Experience</div></div>
-    <div class="stat reveal"><div class="num serif">04</div><div class="cap">Roles &amp;<br>Internships</div></div>
-    <div class="stat reveal"><div class="num serif">3.5</div><div class="cap">GPA<br>MS · SDSU</div></div>
+    <p class="about-text reveal">I'm Surabhi, a Full-Stack Developer and Information Systems graduate student at San Diego State University with 3+ years building <em>scalable, end-to-end</em> web apps. I work across reactive Angular / React front-ends, Node.js back-ends, and cloud databases, and I care about clean REST APIs, measurable UI performance, and shipping <em>AI-driven features</em> that hold up in production.</p>
+    <figure class="about-art reveal">
+      <img src="/surabhi.webp" alt="Portrait of Surabhi Chavan" loading="lazy">
+    </figure>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="svc-head reveal">
-    <div class="sec-label"><span class="dot-mark">•</span><span class="label">03 — Services</span></div>
-    <h2 class="sec-head">What I'm<br><em>useful for.</em></h2>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="edu-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">02 · Education</span></div>
   </div>
-  <div class="svc-list">
-    <div class="svc-row reveal"><span class="sn">01</span><span class="name serif">Product design</span><span class="sd">From fuzzy brief to shipped product — flows, wireframes, polished UI, and the awkward questions in between.</span></div>
-    <div class="svc-row reveal"><span class="sn">02</span><span class="name serif">Design systems</span><span class="sd">Tokens, components, and documentation your engineers will actually read. Built to scale past me.</span></div>
-    <div class="svc-row reveal"><span class="sn">03</span><span class="name serif">Research &amp; strategy</span><span class="sd">Interviews, jobs-to-be-done, and the unglamorous work of deciding what not to build.</span></div>
-    <div class="svc-row reveal"><span class="sn">04</span><span class="name serif">Motion &amp; prototyping</span><span class="sd">Interface motion that explains rather than decorates — prototyped to feel real before a line of code.</span></div>
+
+  <a class="edu-card reveal" href="https://business.sdsu.edu/graduate/msis" target="_blank" rel="noopener">
+    <img class="edu-bg" src="/sdsu-campus.webp" alt="San Diego State University campus with SDSU logo" loading="lazy">
+    <div class="edu-body">
+      <header class="edu-top">
+        <div class="edu-degree-wrap">
+          <div class="label">Degree</div>
+          <h3 class="edu-degree serif">Master of Science<br>in <em>Information Systems</em></h3>
+        </div>
+      </header>
+
+      <div class="edu-stats">
+        <div class="edu-stat">
+          <div class="label">Period</div>
+          <div class="edu-val">Aug 2024 to May 2026</div>
+        </div>
+        <div class="edu-stat">
+          <div class="label">Location</div>
+          <div class="edu-val">San Diego, California</div>
+        </div>
+      </div>
+
+      <div class="edu-cta">
+        <span class="label">Program Page</span>
+        <span class="edu-cta-url">business.sdsu.edu/graduate/msis <span class="edu-cta-arrow">↗</span></span>
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="exp-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">03 · Experience</span></div>
+  </div>
+
+  <ol class="exp-list">
+
+    <li class="exp-row reveal has-flag flag-ca">
+      <div class="exp-rail"><span class="exp-num">01</span><span class="exp-dot"></span></div>
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2026 to June 2026</div>
+        <div class="exp-loc label">Los Angeles, CA</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title serif">Software Development Intern</h3>
+        <div class="exp-company">Donald Hans</div>
+        <ul class="exp-bullets">
+          <li>Optimized edge computing performance to achieve <em>sub-100ms latency</em> by developing an AI assistant using <em>Cloudflare Workers</em>.</li>
+          <li>Cut AI-agent dashboard UI tokens <em>10x</em> and eliminated all render bugs by architecting a <em>Zod-validated A2UI</em> component catalog.</li>
+          <li>Enhanced front-end architecture and <em>Core Web Vitals</em>, reducing page load times <em>30%</em> by refactoring asset-rendering logic.</li>
+          <li>Boosted task completion by <em>35%</em>, as measured by agent-run logs, by building <em>TypeScript MCP</em> servers for Claude tool-calling.</li>
+          <li>Architected an end-to-end <em>RAG pipeline</em> using vector embeddings, cutting model hallucinations by <em>20%</em> for grounded output.</li>
+          <li>Improved software engineering code quality and application scalability by refactoring modular UI components in <em>React</em>.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="exp-row reveal has-flag flag-ca">
+      <div class="exp-rail"><span class="exp-num">02</span><span class="exp-dot"></span></div>
+      <div class="exp-meta">
+        <div class="exp-period">Jan 2025 to Dec 2025</div>
+        <div class="exp-loc label">San Diego, CA</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title serif">AI Research Assistant</h3>
+        <div class="exp-company">Fowler College of Business, SDSU</div>
+        <ul class="exp-bullets">
+          <li>Reduced LLM hallucinations by <em>14%</em> using RAG and agentic frameworks such as AutoGen.</li>
+          <li>Built an NLP phishing-detection model that lifted email threat-detection accuracy by <em>30%</em>.</li>
+          <li>Fine-tuned deep-learning models (AlexNet / CNN) in MATLAB for image classification, hitting <em>90%</em> accuracy.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="exp-row reveal has-flag flag-pa">
+      <div class="exp-rail"><span class="exp-num">03</span><span class="exp-dot"></span></div>
+      <div class="exp-meta">
+        <div class="exp-period">Sep 2022 to Aug 2024</div>
+        <div class="exp-loc label">Bluebell, PA</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title serif">Software Engineer</h3>
+        <div class="exp-company">JSat Automation Inc.</div>
+        <ul class="exp-bullets">
+          <li>Architected an end-to-end <em>E-workflow</em> validation platform in <em>Angular</em> during Agile/Scrum sprints, shipping <em>40+ features</em>.</li>
+          <li>Boosted <em>PostgreSQL</em> query performance <em>45%</em> with indexing, plan tuning, partitioning and stored procedures.</li>
+          <li>Automated <em>Git-based CI/CD</em> pipelines for transpilation, preprocessing, and image processing, slashing build times by <em>40%</em>.</li>
+          <li>Strengthened system reliability by debugging defects via <em>Jest</em> and <em>Karma</em>, achieving <em>90% coverage</em> with centralized logging.</li>
+          <li>Cut latency by <em>35%</em> and boosted usability by <em>60%</em>, as measured via load &amp; UX tests, by building <em>TypeScript</em> &amp; <em>RxJS</em> pipelines.</li>
+          <li>Documented <em>REST API</em> specifications and endpoint contracts, cutting new-hire onboarding time by roughly <em>20%</em>.</li>
+        </ul>
+      </div>
+    </li>
+
+    <li class="exp-row reveal">
+      <div class="exp-rail"><span class="exp-num">04</span><span class="exp-dot"></span></div>
+      <div class="exp-meta">
+        <div class="exp-period">Mar 2022 to Aug 2022</div>
+      </div>
+      <div class="exp-body">
+        <h3 class="exp-title serif">Software Engineer Intern</h3>
+        <div class="exp-company">Qualys Security</div>
+        <ul class="exp-bullets">
+          <li>Architected an automated <em>CVE-to-CPE</em> mapping engine using <em>Java</em> and <em>Spring Boot</em> APIs, improving detection accuracy <em>40%</em>.</li>
+          <li>Debugged <em>Java</em> and <em>Python</em> automation scripts during QA cycles, reducing script failures and improving output accuracy.</li>
+          <li>Developed a cross-platform <em>Java</em> and <em>Python</em> data suite, saving analysts <em>8+ hours weekly</em> on repository comparison tasks.</li>
+          <li>Engineered automated scripts generating comprehensive <em>CSV</em> gap-risk reports, accelerating stakeholder reporting cycles.</li>
+          <li>Built automation using <em>Shodan API</em> to identify affected hosts and IPs, strengthening external attack-surface monitoring.</li>
+          <li>Expedited network threat identification and protocol analysis by swiftly automating <em>live IP tracking</em> across external APIs.</li>
+        </ul>
+      </div>
+    </li>
+
+  </ol>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="work-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">04 · Selected Work</span></div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <a class="card" href="https://room-surabhi.vercel.app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#11233a"/>
+          <!-- window chrome -->
+          <rect x="40" y="40" width="320" height="220" rx="10" fill="#efe9df"/>
+          <circle cx="56" cy="56" r="4" fill="#e0481a"/>
+          <circle cx="70" cy="56" r="4" fill="#d8c67a"/>
+          <circle cx="84" cy="56" r="4" fill="#8aa78a"/>
+          <text x="110" y="60" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="1">ROOM · DAILY STANDUP</text>
+          <!-- video tiles 2x2 -->
+          <rect x="56" y="80" width="134" height="78" rx="6" fill="#3a4a3a"/>
+          <circle cx="123" cy="118" r="18" fill="#efe9df"/>
+          <path d="M107 140 Q123 128 139 140 L139 158 L107 158 Z" fill="#efe9df"/>
+          <rect x="202" y="80" width="134" height="78" rx="6" fill="#1c2b40"/>
+          <circle cx="269" cy="118" r="18" fill="#cdc3ad"/>
+          <path d="M253 140 Q269 128 285 140 L285 158 L253 158 Z" fill="#cdc3ad"/>
+          <rect x="56" y="166" width="134" height="78" rx="6" fill="#5a554c"/>
+          <circle cx="123" cy="204" r="18" fill="#e7e0d2"/>
+          <path d="M107 226 Q123 214 139 226 L139 244 L107 244 Z" fill="#e7e0d2"/>
+          <rect x="202" y="166" width="134" height="78" rx="6" fill="#e0481a"/>
+          <circle cx="269" cy="204" r="18" fill="#f0ebe1"/>
+          <path d="M253 226 Q269 214 285 226 L285 244 L253 244 Z" fill="#f0ebe1"/>
+          <!-- mic / cam controls -->
+          <rect x="150" y="70" width="100" height="4" rx="2" fill="#19171333"/>
+        </svg>
+      </a>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">01</span><span class="label" style="letter-spacing:.18em">Video Platform</span></div>
+      <h3 class="proj-title serif">Room</h3>
+      <p class="proj-desc">Built a Zoom-like platform with secure authentication, meeting management, recording, screen sharing, and scheduling features.</p>
+      <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Clerk</span><span>GetStream</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <a class="card" href="https://web-dev-compiler.vercel.app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#1b1d22"/>
+          <!-- editor window -->
+          <rect x="30" y="30" width="340" height="240" rx="8" fill="#efe9df"/>
+          <!-- tabs -->
+          <rect x="30" y="30" width="340" height="26" fill="#e4ddd0"/>
+          <rect x="30" y="30" width="70" height="26" fill="#efe9df"/>
+          <text x="42" y="47" font-family="DM Sans" font-size="8" fill="#19171399" letter-spacing="1">HTML</text>
+          <text x="112" y="47" font-family="DM Sans" font-size="8" fill="#19171377" letter-spacing="1">CSS</text>
+          <text x="152" y="47" font-family="DM Sans" font-size="8" fill="#19171377" letter-spacing="1">JS</text>
+          <circle cx="356" cy="43" r="4" fill="#e0481a"/>
+          <!-- gutter -->
+          <rect x="30" y="56" width="22" height="214" fill="#e4ddd0"/>
+          <!-- line numbers -->
+          <text x="38" y="76" font-family="DM Sans" font-size="7" fill="#99968b">1</text>
+          <text x="38" y="90" font-family="DM Sans" font-size="7" fill="#99968b">2</text>
+          <text x="38" y="104" font-family="DM Sans" font-size="7" fill="#99968b">3</text>
+          <text x="38" y="118" font-family="DM Sans" font-size="7" fill="#99968b">4</text>
+          <text x="38" y="132" font-family="DM Sans" font-size="7" fill="#99968b">5</text>
+          <text x="38" y="146" font-family="DM Sans" font-size="7" fill="#99968b">6</text>
+          <text x="38" y="160" font-family="DM Sans" font-size="7" fill="#99968b">7</text>
+          <text x="38" y="174" font-family="DM Sans" font-size="7" fill="#99968b">8</text>
+          <!-- code lines -->
+          <rect x="60" y="70" width="90" height="6" rx="2" fill="#e0481a"/>
+          <rect x="156" y="70" width="110" height="6" rx="2" fill="#5a554c66"/>
+          <rect x="72" y="84" width="60" height="6" rx="2" fill="#5a554c88"/>
+          <rect x="138" y="84" width="140" height="6" rx="2" fill="#5a554c33"/>
+          <rect x="84" y="98" width="80" height="6" rx="2" fill="#e0481a99"/>
+          <rect x="170" y="98" width="48" height="6" rx="2" fill="#5a554c66"/>
+          <rect x="84" y="112" width="50" height="6" rx="2" fill="#5a554c66"/>
+          <rect x="140" y="112" width="90" height="6" rx="2" fill="#5a554c33"/>
+          <rect x="72" y="126" width="70" height="6" rx="2" fill="#e0481a66"/>
+          <rect x="60" y="140" width="40" height="6" rx="2" fill="#5a554c66"/>
+          <!-- preview pane -->
+          <rect x="240" y="162" width="112" height="92" rx="4" fill="#15130f"/>
+          <text x="252" y="178" font-family="DM Sans" font-size="7" fill="#efe9df" letter-spacing="1">PREVIEW</text>
+          <rect x="252" y="186" width="88" height="4" rx="2" fill="#efe9df33"/>
+          <rect x="252" y="196" width="60" height="4" rx="2" fill="#efe9df33"/>
+          <rect x="252" y="216" width="40" height="20" rx="4" fill="#e0481a"/>
+        </svg>
+      </a>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">02</span><span class="label" style="letter-spacing:.18em">Dev Tool</span></div>
+      <h3 class="proj-title serif">Web Dev Compiler</h3>
+      <p class="proj-desc">Online HTML / CSS / JS compiler similar to CodePen with persistent login, authentication using cookies, and RTK Query for API management.</p>
+      <div class="tags"><span>React</span><span>TypeScript</span><span>Redux</span><span>Vite</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <a class="card" href="https://github.com/webforworld2512/AI-for-Finance" target="_blank" rel="noopener">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#cdb79a"/>
+          <!-- axes -->
+          <line x1="60" y1="240" x2="340" y2="240" stroke="#3a3128" stroke-width="1.4"/>
+          <line x1="60" y1="60"  x2="60"  y2="240" stroke="#3a3128" stroke-width="1.4"/>
+          <!-- bars -->
+          <rect x="80"  y="170" width="22" height="70"  fill="#3a3128"/>
+          <rect x="112" y="140" width="22" height="100" fill="#3a3128"/>
+          <rect x="144" y="110" width="22" height="130" fill="#3a3128"/>
+          <rect x="176" y="150" width="22" height="90"  fill="#3a3128"/>
+          <rect x="208" y="120" width="22" height="120" fill="#e0481a"/>
+          <rect x="240" y="90"  width="22" height="150" fill="#3a3128"/>
+          <rect x="272" y="130" width="22" height="110" fill="#3a3128"/>
+          <rect x="304" y="100" width="22" height="140" fill="#3a3128"/>
+          <!-- accuracy ribbon -->
+          <rect x="208" y="60" width="110" height="22" rx="11" fill="#efe9df"/>
+          <text x="222" y="76" font-family="Playfair Display" font-size="14" fill="#15130f" font-style="italic">92% Acc</text>
+          <!-- flagged outlier -->
+          <circle cx="219" cy="128" r="5" fill="#efe9df" stroke="#15130f" stroke-width="1.2"/>
+          <text x="100" y="266" font-family="DM Sans" font-size="8" fill="#5a4d3c" letter-spacing="3">XGBOOST · FRAUD DETECTION · SAGEMAKER</text>
+        </svg>
+      </a>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">03</span><span class="label" style="letter-spacing:.18em">Machine Learning</span></div>
+      <h3 class="proj-title serif">AI for Finance</h3>
+      <p class="proj-desc">Achieved 92% fraud detection accuracy using XGBoost. Reduced false positives by 15% through feature engineering and hyperparameter tuning.</p>
+      <div class="tags"><span>XGBoost</span><span>Python</span><span>AWS SageMaker</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <a class="card" href="https://bug-tracker-api-surabhi.vercel.app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#15130f"/>
+          <!-- terminal panel -->
+          <rect x="34" y="34" width="332" height="232" rx="8" fill="#1f1d18"/>
+          <circle cx="50" cy="50" r="4" fill="#e0481a"/>
+          <circle cx="64" cy="50" r="4" fill="#d8c67a"/>
+          <circle cx="78" cy="50" r="4" fill="#8aa78a"/>
+          <text x="100" y="54" font-family="DM Sans" font-size="7" fill="#efe9df99" letter-spacing="1">BUG-TRACKER-API · ROUTES</text>
+          <!-- endpoints -->
+          <rect x="50" y="80" width="40" height="16" rx="3" fill="#3a4a3a"/>
+          <text x="56" y="92" font-family="DM Sans" font-size="8" fill="#efe9df" letter-spacing="1">GET</text>
+          <rect x="96" y="80" width="200" height="16" rx="3" fill="#efe9df11"/>
+          <text x="102" y="92" font-family="DM Sans" font-size="8" fill="#efe9dfcc">/api/bugs</text>
+          <rect x="50" y="104" width="40" height="16" rx="3" fill="#e0481a"/>
+          <text x="54" y="116" font-family="DM Sans" font-size="8" fill="#efe9df" letter-spacing="1">POST</text>
+          <rect x="96" y="104" width="200" height="16" rx="3" fill="#efe9df11"/>
+          <text x="102" y="116" font-family="DM Sans" font-size="8" fill="#efe9dfcc">/api/bugs</text>
+          <rect x="50" y="128" width="40" height="16" rx="3" fill="#1c2b40"/>
+          <text x="56" y="140" font-family="DM Sans" font-size="8" fill="#efe9df" letter-spacing="1">PUT</text>
+          <rect x="96" y="128" width="200" height="16" rx="3" fill="#efe9df11"/>
+          <text x="102" y="140" font-family="DM Sans" font-size="8" fill="#efe9dfcc">/api/bugs/:id</text>
+          <rect x="50" y="152" width="40" height="16" rx="3" fill="#8a3a3a"/>
+          <text x="54" y="164" font-family="DM Sans" font-size="7" fill="#efe9df" letter-spacing="1">DEL</text>
+          <rect x="96" y="152" width="200" height="16" rx="3" fill="#efe9df11"/>
+          <text x="102" y="164" font-family="DM Sans" font-size="8" fill="#efe9dfcc">/api/bugs/:id</text>
+          <!-- JWT token chip -->
+          <rect x="50" y="196" width="300" height="46" rx="6" fill="#efe9df0c" stroke="#efe9df22" stroke-width="1"/>
+          <text x="62" y="214" font-family="DM Sans" font-size="7" fill="#efe9df88" letter-spacing="2">AUTHORIZATION</text>
+          <text x="62" y="232" font-family="DM Sans" font-size="9" fill="#e0481a" letter-spacing="1">Bearer eyJhbGciOiJIUzI1NiJ9…</text>
+        </svg>
+      </a>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">04</span><span class="label" style="letter-spacing:.18em">API</span></div>
+      <h3 class="proj-title serif">Bug Tracker</h3>
+      <p class="proj-desc">Secure bug-tracking API with JWT authentication, role-based access control, nested GET endpoints with computed metrics and pagination.</p>
+      <div class="tags"><span>TypeScript</span><span>Node.js</span><span>Express</span><span>JWT</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <a class="card" href="https://github.com/webforworld2512/AgentCanvas" target="_blank" rel="noopener">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="400" height="300" fill="#1a1626"/>
+          <!-- agent canvas window -->
+          <rect x="30" y="30" width="340" height="240" rx="8" fill="#efe9df"/>
+          <rect x="30" y="30" width="340" height="26" fill="#e4ddd0"/>
+          <circle cx="46" cy="43" r="4" fill="#e0481a"/>
+          <circle cx="60" cy="43" r="4" fill="#d8c67a"/>
+          <circle cx="74" cy="43" r="4" fill="#8aa78a"/>
+          <text x="100" y="47" font-family="DM Sans" font-size="8" fill="#19171399" letter-spacing="1">AGENT CANVAS · LANGGRAPH</text>
+          <!-- chat column -->
+          <rect x="48" y="72" width="130" height="26" rx="13" fill="#e7e0d2"/>
+          <text x="58" y="88" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="1">User · summarize…</text>
+          <rect x="48" y="106" width="170" height="38" rx="10" fill="#1a1626"/>
+          <text x="58" y="121" font-family="DM Sans" font-size="7" fill="#efe9dfcc" letter-spacing="1">Agent · streaming</text>
+          <rect x="58" y="128" width="140" height="3" rx="1.5" fill="#e0481a"/>
+          <rect x="58" y="134" width="90"  height="3" rx="1.5" fill="#efe9df55"/>
+          <!-- generative UI panel on right -->
+          <rect x="232" y="72" width="120" height="178" rx="6" fill="#f5efe3" stroke="#19171322" stroke-width="1"/>
+          <text x="242" y="88" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="1">GENERATIVE UI</text>
+          <!-- node graph -->
+          <circle cx="268" cy="130" r="10" fill="#efe9df" stroke="#19171355" stroke-width="1"/>
+          <circle cx="312" cy="130" r="10" fill="#e0481a"/>
+          <circle cx="290" cy="178" r="10" fill="#efe9df" stroke="#19171355" stroke-width="1"/>
+          <line x1="268" y1="130" x2="312" y2="130" stroke="#19171355" stroke-width="1.2"/>
+          <line x1="268" y1="130" x2="290" y2="178" stroke="#19171355" stroke-width="1.2"/>
+          <line x1="312" y1="130" x2="290" y2="178" stroke="#e0481a" stroke-width="1.4"/>
+          <!-- status badge -->
+          <rect x="242" y="214" width="100" height="22" rx="11" fill="#e0481a"/>
+          <text x="258" y="229" font-family="DM Sans" font-size="8" fill="#efe9df" letter-spacing="2">useFrontendTool</text>
+        </svg>
+      </a>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">05</span><span class="label" style="letter-spacing:.18em">AI Agent</span></div>
+      <h3 class="proj-title serif">AgentCanvas</h3>
+      <p class="proj-desc">A full-stack AI agent with generative UI built on CopilotKit, LangGraph, and the AG-UI protocol. Bidirectional control between agent and React via shared state sync and useFrontendTool.</p>
+      <div class="tags"><span>LangChain</span><span>React</span><span>OpenAI GPT-4.1</span><span>CopilotKit</span><span>FastAPI</span></div>
+    </div>
+  </div>
+
+  <div class="project reveal">
+    <div class="card-wrap" data-card>
+      <a class="card" href="https://deduction-recovery-tool.vercel.app/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          <!-- distinct steel-blue field so the card reads at the same weight as the others -->
+          <rect width="400" height="300" fill="#1f2d3a"/>
+          <!-- app window -->
+          <rect x="20" y="20" width="360" height="260" rx="8" fill="#efe9df"/>
+          <!-- top bar -->
+          <rect x="20" y="20" width="360" height="30" fill="#15130f"/>
+          <circle cx="36" cy="35" r="4" fill="#e0481a"/>
+          <circle cx="50" cy="35" r="4" fill="#d8c67a"/>
+          <circle cx="64" cy="35" r="4" fill="#8aa78a"/>
+          <text x="84" y="39" font-family="DM Sans" font-size="8" fill="#efe9dfcc" letter-spacing="2">DEDUCTION RECOVERY</text>
+          <circle cx="364" cy="35" r="4" fill="#e0481a"/>
+          <!-- stat tiles row -->
+          <rect x="36"  y="66" width="104" height="68" rx="4" fill="#f5efe3" stroke="#1917131a" stroke-width="1"/>
+          <text x="48" y="86" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="2">OPEN</text>
+          <text x="48" y="115" font-family="Playfair Display" font-size="26" fill="#15130f">712</text>
+          <rect x="150" y="66" width="104" height="68" rx="4" fill="#f5efe3" stroke="#1917131a" stroke-width="1"/>
+          <text x="162" y="86" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="2">RECOVERED</text>
+          <text x="162" y="115" font-family="Playfair Display" font-size="26" fill="#e0481a">$84K</text>
+          <rect x="264" y="66" width="100" height="68" rx="4" fill="#15130f"/>
+          <text x="276" y="86" font-family="DM Sans" font-size="7" fill="#efe9df99" letter-spacing="2">AUDIT</text>
+          <text x="276" y="115" font-family="Playfair Display" font-size="26" fill="#efe9df">1,004</text>
+          <!-- table header -->
+          <rect x="36" y="150" width="328" height="20" rx="3" fill="#e7e0d2"/>
+          <text x="48" y="163" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="2">RETAILER</text>
+          <text x="188" y="163" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="2">STAGE</text>
+          <text x="294" y="163" font-family="DM Sans" font-size="7" fill="#5a554c" letter-spacing="2">AMOUNT</text>
+          <!-- row 1 -->
+          <rect x="36" y="172" width="328" height="26" fill="#efe9df"/>
+          <text x="48" y="189" font-family="DM Sans" font-size="9" fill="#15130f">Target · PO 4421</text>
+          <rect x="188" y="178" width="68" height="14" rx="7" fill="#e0481a"/>
+          <text x="201" y="188" font-family="DM Sans" font-size="7" fill="#efe9df" letter-spacing="2">DISPUTE</text>
+          <text x="294" y="189" font-family="Playfair Display" font-size="12" fill="#15130f">$3,120</text>
+          <!-- row 2 -->
+          <rect x="36" y="200" width="328" height="26" fill="#f3eddf"/>
+          <text x="48" y="217" font-family="DM Sans" font-size="9" fill="#15130f">Costco · PO 7812</text>
+          <rect x="188" y="206" width="86" height="14" rx="7" fill="#8aa78a"/>
+          <text x="196" y="216" font-family="DM Sans" font-size="7" fill="#efe9df" letter-spacing="2">RECOVERED</text>
+          <text x="294" y="217" font-family="Playfair Display" font-size="12" fill="#15130f">$1,840</text>
+          <!-- row 3 -->
+          <rect x="36" y="228" width="328" height="26" fill="#efe9df"/>
+          <text x="48" y="245" font-family="DM Sans" font-size="9" fill="#15130f">Walmart · PO 1157</text>
+          <rect x="188" y="234" width="72" height="14" rx="7" fill="#d8c67a"/>
+          <text x="204" y="244" font-family="DM Sans" font-size="7" fill="#15130f" letter-spacing="2">PENDING</text>
+          <text x="294" y="245" font-family="Playfair Display" font-size="12" fill="#15130f">$2,460</text>
+          <!-- bottom chart hint -->
+          <rect x="36" y="258" width="328" height="14" rx="3" fill="#f5efe3"/>
+          <path d="M48 269 Q96 262 150 265 T250 258 T352 262" fill="none" stroke="#e0481a" stroke-width="1.4"/>
+        </svg>
+      </a>
+    </div>
+    <div class="meta">
+      <div class="proj-num"><span class="n">06</span><span class="label" style="letter-spacing:.18em">Internal Tool</span></div>
+      <h3 class="proj-title serif">Deduction Recovery Tool</h3>
+      <p class="proj-desc">A full-stack internal tool that replaced a manual spreadsheet for tracking and disputing 700+ retail deductions. Normalization pipeline across 5+ formats, multi-stage dispute lifecycle, and live recovery analytics.</p>
+      <div class="tags"><span>TypeScript</span><span>React</span><span>Node.js</span><span>SQL</span><span>REST API</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skl-head reveal">
+    <div class="sec-label"><span class="dot-mark">•</span><span class="label">05 · Skills</span></div>
+  </div>
+
+  <div class="skl-grid">
+    <article class="skl-card reveal">
+      <div class="skl-top"><span class="skl-num">01</span><span class="label">Core</span></div>
+      <h3 class="skl-title serif">Programming <em>Languages</em></h3>
+      <ul class="skl-chips">
+        <li>TypeScript</li>
+        <li>JavaScript (ES6+)</li>
+        <li>Python</li>
+        <li>Java</li>
+        <li>SQL (PostgreSQL)</li>
+        <li>HTML5</li>
+        <li>CSS3 / SASS</li>
+      </ul>
+    </article>
+
+    <article class="skl-card reveal">
+      <div class="skl-top"><span class="skl-num">02</span><span class="label">Intelligence</span></div>
+      <h3 class="skl-title serif">AI &amp; <em>Machine Learning</em></h3>
+      <ul class="skl-chips">
+        <li>Agentic AI</li>
+        <li>Model Context Protocol</li>
+        <li>RAG Pipelines</li>
+        <li>LLM Orchestration</li>
+        <li>XGBoost</li>
+      </ul>
+    </article>
+
+    <article class="skl-card reveal">
+      <div class="skl-top"><span class="skl-num">03</span><span class="label">Interface</span></div>
+      <h3 class="skl-title serif">Frontend <em>Architecture</em></h3>
+      <ul class="skl-chips">
+        <li>React</li>
+        <li>Angular</li>
+        <li>Next.js</li>
+        <li>RxJS</li>
+        <li>shadcn/ui</li>
+        <li>Figma</li>
+      </ul>
+    </article>
+
+    <article class="skl-card reveal">
+      <div class="skl-top"><span class="skl-num">04</span><span class="label">Services</span></div>
+      <h3 class="skl-title serif">Backend &amp; <em>System Design</em></h3>
+      <ul class="skl-chips">
+        <li>Node.js</li>
+        <li>Express</li>
+        <li>Spring Boot</li>
+        <li>RESTful APIs</li>
+        <li>Event-Driven Architecture</li>
+      </ul>
+    </article>
+
+    <article class="skl-card reveal">
+      <div class="skl-top"><span class="skl-num">05</span><span class="label">Storage</span></div>
+      <h3 class="skl-title serif">Databases &amp; <em>Query Craft</em></h3>
+      <ul class="skl-chips">
+        <li>PostgreSQL (Relational)</li>
+        <li>Query Optimization</li>
+        <li>Indexing</li>
+        <li>Stored Procedures</li>
+        <li>Partitioning</li>
+      </ul>
+    </article>
+
+    <article class="skl-card reveal">
+      <div class="skl-top"><span class="skl-num">06</span><span class="label">Reliability</span></div>
+      <h3 class="skl-title serif">Observability &amp; <em>Testing</em></h3>
+      <ul class="skl-chips">
+        <li>Jest</li>
+        <li>Karma</li>
+        <li>Monitoring &amp; Observability</li>
+        <li>RBAC</li>
+        <li>JWT Authentication</li>
+      </ul>
+    </article>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="contact">
   <canvas id="topo-contact"></canvas>
-  <div class="sec-label reveal" style="justify-content:center"><span class="dot-mark">•</span><span class="label">04 — Contact</span></div>
-  <h2 class="big serif reveal">Let's make<br>something <em>quiet.</em></h2>
-  <a href="mailto:hello@maeito.studio" class="mail reveal">hello@maeito.studio</a>
+  <div class="sec-label reveal" style="justify-content:center"><span class="dot-mark">•</span><span class="label">06 · Contact</span></div>
+  <a href="mailto:surabhichavan2512@gmail.com" class="mail reveal">surabhichavan2512@gmail.com</a>
+  <div class="contact-links reveal">
+    <a href="https://github.com/webforworld2512" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.95 3.21 9.14 7.66 10.63.56.1.76-.24.76-.54v-1.9c-3.12.68-3.78-1.5-3.78-1.5-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.13.08 1.72 1.16 1.72 1.16 1 1.72 2.63 1.22 3.27.93.1-.72.39-1.22.71-1.5-2.49-.28-5.11-1.25-5.11-5.57 0-1.23.44-2.24 1.16-3.03-.12-.28-.5-1.43.11-2.98 0 0 .94-.3 3.09 1.15.9-.25 1.86-.37 2.82-.38.96 0 1.92.13 2.82.38 2.15-1.46 3.09-1.15 3.09-1.15.61 1.55.23 2.7.11 2.98.72.79 1.16 1.8 1.16 3.03 0 4.33-2.63 5.28-5.13 5.56.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54 4.44-1.49 7.64-5.68 7.64-10.62C23.25 5.48 18.27.5 12 .5Z"/>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/in/surabhi-chavan-1b508b1aa/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.66H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.44a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .78 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .78 23.2 0 22.22 0z"/>
+      </svg>
+    </a>
+    <a href="https://medium.com/@surabhichavan2512" target="_blank" rel="noopener" aria-label="Medium">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M13.54 12a6.8 6.8 0 1 1-13.6 0 6.8 6.8 0 0 1 13.6 0Zm7.46 0c0 3.54-.76 6.4-1.7 6.4-.94 0-1.7-2.86-1.7-6.4 0-3.54.76-6.4 1.7-6.4.94 0 1.7 2.86 1.7 6.4Zm3 0c0 3.17-.27 5.74-.6 5.74-.33 0-.6-2.57-.6-5.74 0-3.17.27-5.74.6-5.74.33 0 .6 2.57.6 5.74Z"/>
+      </svg>
+    </a>
+  </div>
 </section>
 
 <footer>
-  <div class="left">Mae Ito © 2026</div>
-  <div class="mid">Based in Kyoto · Working everywhere</div>
-  <div class="right"><a href="#">Instagram</a> · <a href="#">LinkedIn</a> · <a href="#">Read.cv</a></div>
+  <div class="left">Surabhi Chavan © 2026</div>
+  <div class="mid">Based in California · Open to opportunities</div>
+  <div class="right"><a href="https://github.com/webforworld2512" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/surabhi-chavan-1b508b1aa/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://medium.com/@surabhichavan2512" target="_blank" rel="noopener">Medium</a></div>
 </footer>
+
+<!-- Credits popover. The trigger sits in the lower-right of the viewport;
+     hovering (or keyboard-focusing) reveals a small panel with the sources
+     and inspiration behind the contours. -->
+<div class="credits" tabindex="0" aria-label="Sources and inspiration (hover to reveal)">
+  <span class="credits-trigger">
+    <span class="credits-mark">·</span>
+    Sources &amp; Inspiration
+  </span>
+  <div class="credits-panel" role="group" aria-label="Credits">
+    <div class="credits-head">
+      <span class="label">Colophon</span>
+      <h4 class="serif">The ridges are real.</h4>
+    </div>
+    <p class="credits-lede">
+      The topographic contours drifting through the hero and the contact
+      section are not procedural. They trace actual California terrain,
+      extracted once from a public elevation raster and shipped as static
+      geometry — no map library, no tiles, no runtime fetches of the raw data.
+    </p>
+    <dl class="credits-list">
+      <dt>Elevation data</dt>
+      <dd>
+        <strong>NASA SRTM GL3</strong> &nbsp;(3‑arcsecond, ~90 m) · courtesy of
+        NASA / JPL and USGS, distributed via
+        <a href="https://opentopography.org/" target="_blank" rel="noopener">OpenTopography</a>.
+      </dd>
+      <dt>Snapshots</dt>
+      <dd>Hero: Central California (−122.5° to −115.0°, 33° to 40°). Contact: Mojave &amp; Death Valley (−120° to −114.5°, 32.6° to 37.2°).</dd>
+      <dt>Pipeline</dt>
+      <dd>Python · PIL downsample · 3×3 box blur · matplotlib marching-squares at 130 m / 650 m intervals · Ramer–Douglas–Peucker simplification · SVG + JSON output.</dd>
+      <dt>Runtime</dt>
+      <dd>Vite + vanilla JS. A canvas spring field reads the pre-generated polylines and deforms them under the cursor.</dd>
+      <dt>Brand icons</dt>
+      <dd><a href="https://simpleicons.org/" target="_blank" rel="noopener">Simple Icons</a>, served tinted; AWS &amp; CSS3 inlined as hand-crafted monochrome marks.</dd>
+      <dt>Typography</dt>
+      <dd>Playfair Display &amp; DM Sans, Google Fonts.</dd>
+      <dt>Music</dt>
+      <dd>Ambient piano loop <em>"Rolfied"</em> by Leberch, via <a href="https://pixabay.com/music/" target="_blank" rel="noopener">Pixabay Music</a>.</dd>
+    </dl>
+    <p class="credits-foot">With respect to the engineers at NASA, JPL and the SRTM mission — this site rests on their mountains.</p>
+  </div>
+</div>
+
+<!-- Floating audio toggle. The track lives at /ambient.mp3; browsers block
+     autoplay with sound, so the first click starts the fade-in and later
+     clicks toggle mute. Preference is persisted in localStorage. -->
+<audio id="ambient-audio" src="/ambient.mp3" loop preload="auto"></audio>
+<button class="audio-toggle" type="button" aria-label="Toggle background music" aria-pressed="false" data-state="muted">
+  <svg class="audio-ico audio-on" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+    <path d="M3 10v4h4l5 4V6L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4.03v8.06A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06A7 7 0 0 1 19 12a7 7 0 0 1-5 6.71v2.06A9 9 0 0 0 21 12a9 9 0 0 0-7-8.77z"/>
+  </svg>
+  <svg class="audio-ico audio-off" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="currentColor">
+    <path d="M3 10v4h4l5 4V6L7 10H3zM16.5 12a4.5 4.5 0 0 0-1.3-3.16L13.73 10.3A2.5 2.5 0 0 1 14.5 12c0 .35-.07.68-.2.98l1.5 1.5c.44-.74.7-1.59.7-2.48zm2.5 0c0 1.3-.3 2.52-.84 3.62l1.52 1.52A8.96 8.96 0 0 0 21 12c0-4.28-3-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v4h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.17v2.06a9 9 0 0 0 3.69-1.81L19.73 21 21 19.73 12 10.73 4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+  </svg>
+</button>
 
 </body>
 </html>
